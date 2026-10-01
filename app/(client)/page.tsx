@@ -8,21 +8,28 @@ import {
   motion,
   useMotionValue,
   useSpring,
-  useTransform,
 } from "motion/react"
 import type { ReactNode } from "react"
-
+import type { Variants } from "motion/react"
 
 const MotionLink = motion.create(Link)
 
-const fadeUp = {
+/**
+ * Shared reveal animation
+ *
+ * Explicitly typed as Variants so Motion's transition/ease
+ * types are correctly inferred by TypeScript.
+ */
+const fadeUp: Variants = {
   hidden: {
     opacity: 0,
     y: 40,
   },
+
   visible: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.8,
       ease: [0.22, 1, 0.36, 1],
@@ -30,8 +37,12 @@ const fadeUp = {
   },
 }
 
-const staggerContainer = {
+/**
+ * Stagger animation for groups of children.
+ */
+const staggerContainer: Variants = {
   hidden: {},
+
   visible: {
     transition: {
       staggerChildren: 0.12,
@@ -39,6 +50,11 @@ const staggerContainer = {
   },
 }
 
+/**
+ * Reveal
+ *
+ * Reusable scroll-based reveal animation.
+ */
 function Reveal({
   children,
   className = "",
@@ -62,6 +78,11 @@ function Reveal({
   )
 }
 
+/**
+ * Magnetic button
+ *
+ * Moves slightly toward the mouse cursor.
+ */
 function MagneticButton({
   children,
   href,
@@ -85,12 +106,15 @@ function MagneticButton({
   })
 
   function handleMouseMove(
-    event: React.MouseEvent<HTMLAnchorElement>
+    event: React.MouseEvent<HTMLAnchorElement>,
   ) {
     const rect = event.currentTarget.getBoundingClientRect()
 
-    const mouseX = event.clientX - rect.left - rect.width / 2
-    const mouseY = event.clientY - rect.top - rect.height / 2
+    const mouseX =
+      event.clientX - rect.left - rect.width / 2
+
+    const mouseY =
+      event.clientY - rect.top - rect.height / 2
 
     x.set(mouseX * 0.15)
     y.set(mouseY * 0.15)
@@ -130,10 +154,15 @@ export default function Page() {
   return (
     <main className="overflow-hidden">
 
-      {/* Hero */}
+      {/* =========================================================
+          HERO
+      ========================================================= */}
       <section className="relative flex min-h-screen items-center overflow-hidden">
+
         {/* Animated background */}
         <div className="absolute inset-0 -z-10">
+
+          {/* Main glow */}
           <motion.div
             animate={{
               scale: [1, 1.15, 1],
@@ -149,6 +178,7 @@ export default function Page() {
             className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-violet-600/20 blur-[120px]"
           />
 
+          {/* Secondary glow */}
           <motion.div
             animate={{
               scale: [1, 1.2, 1],
@@ -175,12 +205,16 @@ export default function Page() {
         </div>
 
         <div className="mx-auto grid w-full max-w-7xl gap-16 px-6 py-32 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-          {/* Hero content */}
+
+          {/* =====================================================
+              HERO CONTENT
+          ===================================================== */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
           >
+            {/* Availability */}
             <motion.div
               variants={fadeUp}
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/60"
@@ -200,6 +234,7 @@ export default function Page() {
               Available for opportunities
             </motion.div>
 
+            {/* Eyebrow */}
             <motion.p
               variants={fadeUp}
               className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-violet-400"
@@ -207,11 +242,13 @@ export default function Page() {
               Developer & Problem Solver
             </motion.p>
 
+            {/* Heading */}
             <motion.h1
               variants={fadeUp}
               className="max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-8xl"
             >
               I build digital
+
               <motion.span
                 initial={{
                   opacity: 0,
@@ -232,20 +269,25 @@ export default function Page() {
               </motion.span>
             </motion.h1>
 
+            {/* Description */}
             <motion.p
               variants={fadeUp}
               className="mt-8 max-w-2xl text-lg leading-8 text-white/50"
             >
-              I'm a developer focused on building modern web applications,
-              business systems, and digital products that solve real-world
-              problems.
+              I'm a developer focused on building modern web
+              applications, business systems, and digital
+              products that solve real-world problems.
             </motion.p>
 
+            {/* CTA buttons */}
             <motion.div
               variants={fadeUp}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <MagneticButton href="/projects" primary>
+              <MagneticButton
+                href="/projects"
+                primary
+              >
                 View my work
               </MagneticButton>
 
@@ -254,6 +296,7 @@ export default function Page() {
               </MagneticButton>
             </motion.div>
 
+            {/* Social links */}
             <motion.div
               variants={fadeUp}
               className="mt-12 flex items-center gap-6 text-sm text-white/40"
@@ -275,7 +318,9 @@ export default function Page() {
             </motion.div>
           </motion.div>
 
-          {/* Code card */}
+          {/* =====================================================
+              CODE CARD
+          ===================================================== */}
           <motion.div
             initial={{
               opacity: 0,
@@ -302,6 +347,7 @@ export default function Page() {
             }}
             className="relative hidden lg:block"
           >
+            {/* Card glow */}
             <motion.div
               animate={{
                 opacity: [0.2, 0.35, 0.2],
@@ -315,7 +361,10 @@ export default function Page() {
               className="absolute -inset-6 rounded-3xl bg-violet-500/10 blur-3xl"
             />
 
+            {/* Code window */}
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#111111] shadow-2xl">
+
+              {/* Window header */}
               <div className="flex items-center gap-2 border-b border-white/10 px-5 py-4">
                 <span className="h-3 w-3 rounded-full bg-red-400/70" />
                 <span className="h-3 w-3 rounded-full bg-yellow-400/70" />
@@ -326,65 +375,86 @@ export default function Page() {
                 </span>
               </div>
 
+              {/* Code */}
               <pre className="overflow-x-auto p-6 text-sm leading-7">
                 <code>
-                  <span className="text-violet-400">const</span>{" "}
-                  <span className="text-blue-300">developer</span> = {"{"}
+                  <span className="text-violet-400">
+                    const
+                  </span>{" "}
+                  <span className="text-blue-300">
+                    developer
+                  </span>{" "}
+                  = {"{"}
                   {"\n"}
+
                   {"  "}name:{" "}
                   <span className="text-green-300">
                     "Ra Bunthoeun"
                   </span>
                   ,{"\n"}
+
                   {"  "}role:{" "}
                   <span className="text-green-300">
                     "Developer"
                   </span>
                   ,{"\n"}
+
                   {"  "}focus: [{"\n"}
+
                   {"    "}
                   <span className="text-green-300">
                     "Web Development"
                   </span>
                   ,{"\n"}
+
                   {"    "}
                   <span className="text-green-300">
                     "Business Systems"
                   </span>
                   ,{"\n"}
+
                   {"    "}
                   <span className="text-green-300">
                     "UI/UX"
                   </span>
                   ,{"\n"}
+
                   {"  "}],{"\n"}
+
                   {"  "}stack: [{"\n"}
+
                   {"    "}
                   <span className="text-green-300">
                     "Nuxt"
                   </span>
                   ,{"\n"}
+
                   {"    "}
                   <span className="text-green-300">
                     "React"
                   </span>
                   ,{"\n"}
+
                   {"    "}
                   <span className="text-green-300">
                     "Node.js"
                   </span>
                   ,{"\n"}
+
                   {"    "}
                   <span className="text-green-300">
                     "Spring Boot"
                   </span>
                   ,{"\n"}
+
                   {"  "}],{"\n"}
+
                   {"  "}coffee:{" "}
                   <span className="text-orange-300">
                     true
                   </span>
                   ,{"\n"}
+
                   {"}"};
                 </code>
               </pre>
@@ -392,7 +462,9 @@ export default function Page() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* =====================================================
+            SCROLL INDICATOR
+        ===================================================== */}
         <motion.div
           initial={{
             opacity: 0,
@@ -420,31 +492,61 @@ export default function Page() {
           />
         </motion.div>
       </section>
-      {/* Featured projects */}
+
+      {/* =========================================================
+          FEATURED PROJECTS
+      ========================================================= */}
       <section className="border-t border-white/10 py-32">
         <div className="mx-auto max-w-7xl px-6">
+
           <Reveal className="mb-16 flex items-end justify-between gap-6">
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-violet-400">Selected work</p>
-              <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Featured projects</h2>
+              <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
+                Selected work
+              </p>
+
+              <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+                Featured projects
+              </h2>
             </div>
-            <Link href="/projects" className="hidden text-white/50 transition hover:text-white sm:block">
+
+            <Link
+              href="/projects"
+              className="hidden text-white/50 transition hover:text-white sm:block"
+            >
               View all →
             </Link>
           </Reveal>
-          <ProjectsSection items={projects.filter((p) => p.featured)} />
+
+          <ProjectsSection
+            items={projects.filter(
+              (project) => project.featured,
+            )}
+          />
         </div>
       </section>
 
-      {/* CTA */}
+      {/* =========================================================
+          CTA
+      ========================================================= */}
       <section className="border-t border-white/10 py-32">
         <Reveal className="mx-auto max-w-4xl px-6 text-center">
+
           <h2 className="text-5xl font-bold tracking-tight sm:text-7xl">
             Let&apos;s build something
-            <span className="block text-white/30">great together.</span>
+
+            <span className="block text-white/30">
+              great together.
+            </span>
           </h2>
+
           <div className="mt-10">
-            <MagneticButton href="/contact" primary>Get in touch →</MagneticButton>
+            <MagneticButton
+              href="/contact"
+              primary
+            >
+              Get in touch →
+            </MagneticButton>
           </div>
         </Reveal>
       </section>

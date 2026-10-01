@@ -3,7 +3,8 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { ArrowLeft, ArrowRight, Check, ExternalLink, GitBranchIcon } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { getProjectBySlug, projects } from "@/data/projects"
@@ -66,18 +67,14 @@ export default async function ProjectPage({ params }: Props) {
 
           <div className="mt-8 flex flex-wrap gap-3">
             {project.liveUrl && (
-              <Button asChild className="rounded-full bg-white text-black hover:bg-violet-100">
-                <a href={project.liveUrl} target="_blank" rel="noreferrer">
-                  <ExternalLink /> Live demo
-                </a>
-              </Button>
+              <a href={project.liveUrl} target="_blank" rel="noreferrer" className={cn(buttonVariants(), "rounded-full bg-white text-black hover:bg-violet-100")}>
+                <ExternalLink /> Live demo
+              </a>
             )}
             {project.github && (
-              <Button asChild variant="outline" className="rounded-full border-white/15 bg-transparent text-white hover:bg-white/5">
-                <a href={project.github} target="_blank" rel="noreferrer">
-                  <GitBranchIcon /> Source code
-                </a>
-              </Button>
+              <a href={project.github} target="_blank" rel="noreferrer" className={cn(buttonVariants({ variant: "outline" }), "rounded-full border-white/15 bg-transparent text-white hover:bg-white/5")}>
+                <GitBranchIcon /> Source code
+              </a>
             )}
           </div>
         </header>

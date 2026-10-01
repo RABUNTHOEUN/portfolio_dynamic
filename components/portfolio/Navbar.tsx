@@ -4,8 +4,9 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { motion, useMotionValueEvent, useScroll } from "motion/react"
 import { Menu } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet"
 import { site } from "@/data/site"
 
 export default function Navbar() {
@@ -45,16 +46,12 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Button asChild variant="outline" className="hidden rounded-full border-white/15 bg-transparent text-white hover:bg-violet-400/10 md:inline-flex">
-          <Link href="/contact">Let&apos;s talk</Link>
-        </Button>
+        <Link href="/contact" className={cn(buttonVariants({ variant: "outline" }), "hidden rounded-full border-white/15 bg-transparent text-white hover:bg-violet-400/10 md:inline-flex")}>Let&apos;s talk</Link>
 
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="text-white md:hidden" aria-label="Menu">
-              <Menu />
-            </Button>
-          </SheetTrigger>
+          <Button variant="ghost" size="icon" className="text-white md:hidden" aria-label="Menu" onClick={() => setOpen(true)}>
+            <Menu />
+          </Button>
           <SheetContent className="border-white/10 bg-[#0a0a0a] text-white">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
             <nav className="mt-16 flex flex-col gap-2 px-6">
