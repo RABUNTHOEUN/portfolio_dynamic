@@ -51,7 +51,7 @@ export const projects: Project[] = [
 
     github: "https://github.com/RABUNTHOEUN/business-platform",
 
-    liveUrl: "https://example.com",
+    liveUrl: "https://thoeun.store",
 
     features: [
       "Dashboard and analytics",
@@ -147,7 +147,7 @@ export const projects: Project[] = [
 
     github: "https://github.com/RABUNTHOEUN/website-builder",
 
-    liveUrl: "https://example.com",
+    liveUrl: "https://thoeun.store",
 
     features: [
       "Dynamic page configuration",
