@@ -8,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet"
 import { site } from "@/data/site"
+import { ModeToggle } from "../ui/toggle-dark-mode"
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -30,7 +31,8 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="text-lg font-bold tracking-tight">
-          RA<span className="text-violet-400">.</span>
+          {site.first_name.toUpperCase()}
+          <span className="text-violet-400">.</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -46,8 +48,10 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Link href="/contact" className={cn(buttonVariants({ variant: "outline" }), "hidden rounded-full border-white/15 bg-transparent text-white hover:bg-violet-400/10 md:inline-flex")}>Let&apos;s talk</Link>
-
+        <div className="flex items-center gap-2">
+          {/* <ModeToggle /> */}
+          <Link href="/contact" className={cn(buttonVariants({ variant: "outline" }), "hidden rounded-full border-white/15 bg-transparent text-white hover:bg-violet-400/10 md:inline-flex")}>Let&apos;s talk</Link>
+        </div>
         <Sheet open={open} onOpenChange={setOpen}>
           <Button variant="ghost" size="icon" className="text-white md:hidden" aria-label="Menu" onClick={() => setOpen(true)}>
             <Menu />

@@ -1,18 +1,28 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import ProjectsSection from "@/components/portfolio/ProjectsSection"
-import { projects } from "@/data/projects"
-import { site } from "@/data/site"
+import Link from "next/link";
+import ProjectsSection from "@/components/portfolio/ProjectsSection";
+import { projects } from "@/data/projects";
+import { site } from "@/data/site";
+import { motion, useMotionValue, useSpring } from "motion/react";
 import {
-  motion,
-  useMotionValue,
-  useSpring,
-} from "motion/react"
-import type { ReactNode } from "react"
-import type { Variants } from "motion/react"
+  SiNextdotjs,
+  SiReact,
+  SiNuxt,
+  SiVuedotjs,
+  SiTypescript,
+  SiJavascript,
+  SiNodedotjs,
+  SiSpringboot,
+  SiTailwindcss,
+  SiMysql,
+  SiGit,
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import type { ReactNode } from "react";
+import type { Variants } from "motion/react";
 
-const MotionLink = motion.create(Link)
+const MotionLink = motion.create(Link);
 
 /**
  * Shared reveal animation
@@ -35,7 +45,7 @@ const fadeUp: Variants = {
       ease: [0.22, 1, 0.36, 1],
     },
   },
-}
+};
 
 /**
  * Stagger animation for groups of children.
@@ -48,7 +58,7 @@ const staggerContainer: Variants = {
       staggerChildren: 0.12,
     },
   },
-}
+};
 
 /**
  * Reveal
@@ -59,8 +69,8 @@ function Reveal({
   children,
   className = "",
 }: {
-  children: ReactNode
-  className?: string
+  children: ReactNode;
+  className?: string;
 }) {
   return (
     <motion.div
@@ -75,7 +85,7 @@ function Reveal({
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
 /**
@@ -88,41 +98,37 @@ function MagneticButton({
   href,
   primary = false,
 }: {
-  children: ReactNode
-  href: string
-  primary?: boolean
+  children: ReactNode;
+  href: string;
+  primary?: boolean;
 }) {
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
   const springX = useSpring(x, {
     stiffness: 300,
     damping: 20,
-  })
+  });
 
   const springY = useSpring(y, {
     stiffness: 300,
     damping: 20,
-  })
+  });
 
-  function handleMouseMove(
-    event: React.MouseEvent<HTMLAnchorElement>,
-  ) {
-    const rect = event.currentTarget.getBoundingClientRect()
+  function handleMouseMove(event: React.MouseEvent<HTMLAnchorElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
 
-    const mouseX =
-      event.clientX - rect.left - rect.width / 2
+    const mouseX = event.clientX - rect.left - rect.width / 2;
 
-    const mouseY =
-      event.clientY - rect.top - rect.height / 2
+    const mouseY = event.clientY - rect.top - rect.height / 2;
 
-    x.set(mouseX * 0.15)
-    y.set(mouseY * 0.15)
+    x.set(mouseX * 0.15);
+    y.set(mouseY * 0.15);
   }
 
   function handleMouseLeave() {
-    x.set(0)
-    y.set(0)
+    x.set(0);
+    y.set(0);
   }
 
   return (
@@ -147,21 +153,32 @@ function MagneticButton({
     >
       {children}
     </MotionLink>
-  )
+  );
 }
 
 export default function Page() {
+  const technologies = [
+    { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+    { name: "React", icon: SiReact, color: "#61DAFB" },
+    { name: "Nuxt", icon: SiNuxt, color: "#00DC82" },
+    { name: "Vue", icon: SiVuedotjs, color: "#42B883" },
+    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+    { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
+    { name: "Spring Boot", icon: SiSpringboot, color: "#6DB33F" },
+    { name: "Java", icon: FaJava, color: "#ED8B00" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+    { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+    { name: "Git", icon: SiGit, color: "#F05032" },
+  ];
   return (
     <main className="overflow-hidden">
-
       {/* =========================================================
           HERO
       ========================================================= */}
       <section className="relative flex min-h-screen items-center overflow-hidden">
-
         {/* Animated background */}
         <div className="absolute inset-0 -z-10">
-
           {/* Main glow */}
           <motion.div
             animate={{
@@ -205,7 +222,6 @@ export default function Page() {
         </div>
 
         <div className="mx-auto grid w-full max-w-7xl gap-16 px-6 py-32 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-
           {/* =====================================================
               HERO CONTENT
           ===================================================== */}
@@ -230,7 +246,6 @@ export default function Page() {
                 }}
                 className="h-2 w-2 rounded-full bg-green-400"
               />
-
               Available for opportunities
             </motion.div>
 
@@ -248,7 +263,6 @@ export default function Page() {
               className="max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-8xl"
             >
               I build digital
-
               <motion.span
                 initial={{
                   opacity: 0,
@@ -274,9 +288,9 @@ export default function Page() {
               variants={fadeUp}
               className="mt-8 max-w-2xl text-lg leading-8 text-white/50"
             >
-              I'm a developer focused on building modern web
-              applications, business systems, and digital
-              products that solve real-world problems.
+              I'm a developer focused on building modern web applications,
+              business systems, and digital products that solve real-world
+              problems.
             </motion.p>
 
             {/* CTA buttons */}
@@ -284,16 +298,11 @@ export default function Page() {
               variants={fadeUp}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <MagneticButton
-                href="/projects"
-                primary
-              >
+              <MagneticButton href="/projects" primary>
                 View my work
               </MagneticButton>
 
-              <MagneticButton href="/contact">
-                Contact me
-              </MagneticButton>
+              <MagneticButton href="/contact">Contact me</MagneticButton>
             </motion.div>
 
             {/* Social links */}
@@ -363,7 +372,6 @@ export default function Page() {
 
             {/* Code window */}
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#111111] shadow-2xl">
-
               {/* Window header */}
               <div className="flex items-center gap-2 border-b border-white/10 px-5 py-4">
                 <span className="h-3 w-3 rounded-full bg-red-400/70" />
@@ -378,83 +386,35 @@ export default function Page() {
               {/* Code */}
               <pre className="overflow-x-auto p-6 text-sm leading-7">
                 <code>
-                  <span className="text-violet-400">
-                    const
-                  </span>{" "}
-                  <span className="text-blue-300">
-                    developer
-                  </span>{" "}
-                  = {"{"}
+                  <span className="text-violet-400">const</span>{" "}
+                  <span className="text-blue-300">developer</span> = {"{"}
                   {"\n"}
-
                   {"  "}name:{" "}
-                  <span className="text-green-300">
-                    "Ra Bunthoeun"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"Ra Bunthoeun"</span>,{"\n"}
                   {"  "}role:{" "}
-                  <span className="text-green-300">
-                    "Developer"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"Developer"</span>,{"\n"}
                   {"  "}focus: [{"\n"}
-
                   {"    "}
-                  <span className="text-green-300">
-                    "Web Development"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"Web Development"</span>,
+                  {"\n"}
                   {"    "}
-                  <span className="text-green-300">
-                    "Business Systems"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"Business Systems"</span>,
+                  {"\n"}
                   {"    "}
-                  <span className="text-green-300">
-                    "UI/UX"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"UI/UX"</span>,{"\n"}
                   {"  "}],{"\n"}
-
                   {"  "}stack: [{"\n"}
-
                   {"    "}
-                  <span className="text-green-300">
-                    "Nuxt"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"Nuxt"</span>,{"\n"}
                   {"    "}
-                  <span className="text-green-300">
-                    "React"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"React"</span>,{"\n"}
                   {"    "}
-                  <span className="text-green-300">
-                    "Node.js"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"Node.js"</span>,{"\n"}
                   {"    "}
-                  <span className="text-green-300">
-                    "Spring Boot"
-                  </span>
-                  ,{"\n"}
-
+                  <span className="text-green-300">"Spring Boot"</span>,{"\n"}
                   {"  "}],{"\n"}
-
-                  {"  "}coffee:{" "}
-                  <span className="text-orange-300">
-                    true
-                  </span>
-                  ,{"\n"}
-
+                  {"  "}coffee: <span className="text-orange-300">true</span>,
+                  {"\n"}
                   {"}"};
                 </code>
               </pre>
@@ -494,11 +454,409 @@ export default function Page() {
       </section>
 
       {/* =========================================================
+    ABOUT
+========================================================= */}
+      <section className="border-t border-white/10 py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
+              About me
+            </p>
+
+            <div className="mt-6 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                Turning ideas into
+                <span className="block text-white/30">
+                  useful digital products.
+                </span>
+              </h2>
+
+              <div className="max-w-2xl">
+                <p className="text-lg leading-8 text-white/50">
+                  I&apos;m Ra Bunthoeun, a developer focused on building modern
+                  web applications, business systems, and digital experiences.
+                </p>
+
+                <p className="mt-6 text-lg leading-8 text-white/40">
+                  I enjoy solving real-world problems with clean interfaces,
+                  reliable APIs, scalable architecture, and thoughtful user
+                  experiences.
+                </p>
+
+                <div className="mt-8">
+                  <MagneticButton href="/about">More about me →</MagneticButton>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* =========================================================
+    WHAT I BUILD
+========================================================= */}
+      <section className="border-t border-white/10 py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="max-w-3xl">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
+              What I build
+            </p>
+
+            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+              Digital products that solve real problems.
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-white/40">
+              From business platforms to modern websites, I focus on building
+              software that is practical, maintainable, and easy to use.
+            </p>
+          </Reveal>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2"
+          >
+            {[
+              {
+                number: "01",
+                title: "Web Applications",
+                description:
+                  "Modern responsive applications with intuitive interfaces and smooth user experiences.",
+                tags: ["Next.js", "Nuxt", "React"],
+              },
+              {
+                number: "02",
+                title: "Business Systems",
+                description:
+                  "Internal tools, dashboards, workflows, and systems designed around real business processes.",
+                tags: ["Spring Boot", "Node.js", "MySQL"],
+              },
+              {
+                number: "03",
+                title: "CMS & Websites",
+                description:
+                  "Flexible content-driven websites that allow teams to manage their content without developers.",
+                tags: ["Nuxt", "CMS", "SEO"],
+              },
+              {
+                number: "04",
+                title: "API & Backend",
+                description:
+                  "Structured APIs and backend services designed for security, scalability, and maintainability.",
+                tags: ["REST API", "JWT", "Database"],
+              },
+            ].map((item) => (
+              <motion.div
+                key={item.number}
+                variants={fadeUp}
+                className="group bg-[#0b0b0b] p-8 transition-colors duration-500 hover:bg-white/[0.04] sm:p-10"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="text-sm text-white/20">{item.number}</span>
+
+                  <motion.span
+                    whileHover={{ x: 5 }}
+                    className="text-white/20 transition group-hover:text-violet-400"
+                  >
+                    ↗
+                  </motion.span>
+                </div>
+
+                <h3 className="mt-16 text-2xl font-semibold">{item.title}</h3>
+
+                <p className="mt-4 leading-7 text-white/40">
+                  {item.description}
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/40"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================
+    TECH STACK
+========================================================= */}
+      <section className="border-t border-white/10 py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="text-center">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
+              Technology
+            </p>
+
+            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+              Tools I use to build.
+            </h2>
+          </Reveal>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+          >
+            {technologies.map(({ name, icon: Icon, color }, index) => (
+              <motion.div
+                key={name}
+                variants={fadeUp}
+                whileHover={{
+                  y: -6,
+                  scale: 1.02,
+                }}
+                style={
+                  {
+                    "--tech-color": color,
+                  } as React.CSSProperties
+                }
+                className="
+      group
+      relative
+      overflow-hidden
+      rounded-2xl
+      border border-white/10
+      bg-white/[0.02]
+      p-6
+
+      transition-all
+      duration-500
+      ease-out
+
+      hover:border-[var(--tech-color)]/30
+      hover:bg-white/[0.04]
+
+      before:pointer-events-none
+      before:absolute
+      before:inset-0
+      before:-z-0
+      before:rounded-2xl
+      before:bg-[var(--tech-color)]
+      before:opacity-0
+      before:blur-3xl
+      before:transition-opacity
+      before:duration-500
+      before:content-['']
+
+      group-hover:before:opacity-[0.08]
+    "
+              >
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Top */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-white/20">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span
+                      className="
+            text-white/20
+            transition-all
+            duration-500
+            group-hover:text-[var(--tech-color)]
+            group-hover:drop-shadow-[0_0_6px_var(--tech-color)]
+          "
+                    >
+                      ●
+                    </span>
+                  </div>
+
+                  {/* Logo */}
+                  <div
+                    className="
+          mt-8
+          flex
+          h-12
+          w-12
+          items-center
+          justify-center
+          rounded-xl
+          border
+          border-white/10
+          bg-white/[0.04]
+
+          transition-all
+          duration-500
+
+          group-hover:scale-105
+          group-hover:border-[var(--tech-color)]/30
+          group-hover:bg-white/[0.08]
+        "
+                  >
+                    <Icon
+                      className="
+            h-7
+            w-7
+            text-white/50
+
+            transition-all
+            duration-500
+
+            group-hover:text-[var(--tech-color)]
+            group-hover:drop-shadow-[0_0_10px_var(--tech-color)]
+          "
+                    />
+                  </div>
+
+                  {/* Name */}
+                  <h3
+                    className="
+          mt-5
+          text-lg
+          font-medium
+          text-white/90
+          transition-colors
+          duration-300
+        "
+                  >
+                    {name}
+                  </h3>
+
+                  {/* Hover line */}
+                  <div
+                    className="
+          mt-4
+          h-px
+          w-0
+          transition-all
+          duration-500
+          group-hover:w-full
+        "
+                    style={{
+                      backgroundColor: color,
+                      boxShadow: `0 0 10px ${color}`,
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================
+    STATS
+========================================================= */}
+      <section className="border-t border-white/10 py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {[
+              {
+                value: "15+",
+                label: "Technologies explored",
+              },
+              {
+                value: "20+",
+                label: "Projects & experiments",
+              },
+              {
+                value: "4+",
+                label: "Years learning & building",
+              },
+              {
+                value: "∞",
+                label: "Problems to solve",
+              },
+            ].map((stat) => (
+              <motion.div
+                key={stat.label}
+                variants={fadeUp}
+                className="bg-[#0b0b0b] p-8 sm:p-10"
+              >
+                <div className="text-4xl font-bold sm:text-5xl">
+                  {stat.value}
+                </div>
+
+                <p className="mt-3 text-sm text-white/40">{stat.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================
+    PROCESS
+========================================================= */}
+      <section className="border-t border-white/10 py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
+              How I work
+            </p>
+
+            <h2 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+              From idea to something people can use.
+            </h2>
+          </Reveal>
+
+          <div className="mt-16">
+            {[
+              {
+                number: "01",
+                title: "Understand",
+                description:
+                  "Understand the problem, users, requirements, and expected outcome.",
+              },
+              {
+                number: "02",
+                title: "Plan",
+                description:
+                  "Break the idea into practical features, architecture, and development steps.",
+              },
+              {
+                number: "03",
+                title: "Build",
+                description:
+                  "Develop the interface, backend, database, integrations, and core functionality.",
+              },
+              {
+                number: "04",
+                title: "Improve",
+                description:
+                  "Test, refine, fix issues, improve the experience, and prepare the product for launch.",
+              },
+            ].map((step, index) => (
+              <Reveal
+                key={step.number}
+                className="group grid gap-6 border-t border-white/10 py-8 md:grid-cols-[100px_280px_1fr] md:items-center"
+              >
+                <span className="text-sm text-violet-400">{step.number}</span>
+
+                <h3 className="text-2xl font-semibold">{step.title}</h3>
+
+                <p className="max-w-xl leading-7 text-white/40">
+                  {step.description}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
           FEATURED PROJECTS
       ========================================================= */}
       <section className="border-t border-white/10 py-32">
         <div className="mx-auto max-w-7xl px-6">
-
           <Reveal className="mb-16 flex items-end justify-between gap-6">
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
@@ -519,9 +877,7 @@ export default function Page() {
           </Reveal>
 
           <ProjectsSection
-            items={projects.filter(
-              (project) => project.featured,
-            )}
+            items={projects.filter((project) => project.featured)}
           />
         </div>
       </section>
@@ -531,25 +887,18 @@ export default function Page() {
       ========================================================= */}
       <section className="border-t border-white/10 py-32">
         <Reveal className="mx-auto max-w-4xl px-6 text-center">
-
           <h2 className="text-5xl font-bold tracking-tight sm:text-7xl">
             Let&apos;s build something
-
-            <span className="block text-white/30">
-              great together.
-            </span>
+            <span className="block text-white/30">great together.</span>
           </h2>
 
           <div className="mt-10">
-            <MagneticButton
-              href="/contact"
-              primary
-            >
+            <MagneticButton href="/contact" primary>
               Get in touch →
             </MagneticButton>
           </div>
         </Reveal>
       </section>
     </main>
-  )
+  );
 }

@@ -5,8 +5,8 @@ import { site } from "@/data/site";
 export const rootMetadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.role}`,
-    template: `%s | ${site.name}`, // child pages only set their own title
+    default: `${site.full_name} — ${site.role}`,
+    template: `%s | ${site.full_name}`, // child pages only set their own title
   },
   description: site.description,
   keywords: [
@@ -18,17 +18,17 @@ export const rootMetadata: Metadata = {
     "React",
     "Spring Boot",
   ],
-  authors: [{ name: site.name }],
+  authors: [{ name: site.full_name }],
   openGraph: {
     type: "website",
-    siteName: `${site.name} — Portfolio`,
-    title: `${site.name} — ${site.role}`,
+    siteName: `${site.full_name} — Portfolio`,
+    title: `${site.full_name} — ${site.role}`,
     description: site.description,
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.role}`,
+    title: `${site.full_name} — ${site.role}`,
     description: site.description,
   },
 };
