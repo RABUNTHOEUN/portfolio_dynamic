@@ -203,6 +203,23 @@ html[lang="km"] .hero-title {
   }
 }
 
+/* Code window — English */
+.code-window .code-content {
+  font-family: var(--font-jetbrains-mono), monospace;
+  line-height: 1.75;
+}
+
+/* Code window — Khmer */
+html[lang="km"] .code-window .translated-code {
+  font-family: var(--font-khmer), sans-serif;
+  letter-spacing: normal;
+  line-height: 1.9;
+}
+
+html[lang="km"] .code-window .code-content {
+  line-height: 1.9;
+}
+
 /* Khmer font inside the code window */
 html[lang="km"] .code-window .translated-code {
   font-family: var(--font-khmer), sans-serif;
