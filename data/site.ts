@@ -63,7 +63,7 @@ export const site: SiteConfig = {
 
   role: "Developer",
 
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thoeun.store",
 
   description:
     "Portfolio of Ra Bunthoeun — a developer building modern web applications and business systems with Nuxt, React, Next.js and Spring Boot.",
