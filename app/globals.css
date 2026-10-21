@@ -203,6 +203,23 @@ html[lang="km"] .hero-title {
   }
 }
 
+/* Khmer font inside the code window */
+html[lang="km"] .code-window .translated-code {
+  font-family: var(--font-khmer), sans-serif;
+  letter-spacing: normal;
+  line-height: 1.9;
+}
+
+/* Give Khmer code lines more vertical space */
+html[lang="km"] .code-window .code-content {
+  line-height: 1.9;
+}
+
+/* Khmer footer and window header */
+html[lang="km"] .code-window>div {
+  line-height: 1.8;
+}
+
 /* Khmer body */
 html[lang="km"] body {
   font-family: var(--font-khmer), sans-serif;

@@ -367,16 +367,9 @@ export default function Page() {
             />
 
 
+
             {/* Code window */}
-            <div
-              className="
-    relative overflow-hidden rounded-2xl
-    border border-border
-    bg-card text-card-foreground
-    shadow-xl
-    transition-colors duration-300
-  "
-            >
+            <div className="code-window relative overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow-xl transition-colors duration-300">
               {/* Window header */}
               <div className="flex items-center gap-2 border-b border-border px-5 py-4">
                 <span className="h-3 w-3 rounded-full bg-red-400/80" />
@@ -389,38 +382,25 @@ export default function Page() {
               </div>
 
               {/* Code */}
-              <pre className="overflow-x-auto p-6 text-sm leading-7">
+              <pre className="code-content overflow-x-auto p-6 text-sm leading-7">
                 <code>
-                  <span className="text-brand font-semibold">const</span>{" "}
+                  <span className="font-semibold text-brand">const</span>{" "}
                   <span className="text-blue-500 dark:text-blue-300">developer</span> = {"{"}
                   {"\n"}
-                  {"  "}name:{" "}
-                  <span className="text-teal">"Ra Bunthoeun"</span>,{"\n"}
-                  {"  "}role:{" "}
-                  <span className="text-teal">"{t("Developer")}"</span>,{"\n"}
+                  {"  "}name: <span className="text-teal">"Ra Bunthoeun"</span>,{"\n"}
+                  {"  "}role: <span className="text-teal">"<span className="translated-code">{t("Developer")}</span>"</span>,{"\n"}
                   {"  "}focus: [{"\n"}
-                  {"    "}
-                  <span className="text-teal">"{t("Web Development")}"</span>,
-                  {"\n"}
-                  {"    "}
-                  <span className="text-teal">"{t("Business Systems")}"</span>,
-                  {"\n"}
-                  {"    "}
-                  <span className="text-teal">"{t("UI/UX Design")}"</span>,
-                  {"\n"}
+                  {"    "}<span className="text-teal">"<span className="translated-code">{t("Web Development")}</span>"</span>,{"\n"}
+                  {"    "}<span className="text-teal">"<span className="translated-code">{t("Business Systems")}</span>"</span>,{"\n"}
+                  {"    "}<span className="text-teal">"<span className="translated-code">{t("UI/UX Design")}</span>"</span>,{"\n"}
                   {"  "}],{"\n"}
                   {"  "}stack: [{"\n"}
-                  {"    "}
-                  <span className="text-teal">"Nuxt"</span>,{"\n"}
-                  {"    "}
-                  <span className="text-teal">"React"</span>,{"\n"}
-                  {"    "}
-                  <span className="text-teal">"Node.js"</span>,{"\n"}
-                  {"    "}
-                  <span className="text-teal">"Spring Boot"</span>,{"\n"}
+                  {"    "}<span className="text-teal">"Nuxt"</span>,{"\n"}
+                  {"    "}<span className="text-teal">"React"</span>,{"\n"}
+                  {"    "}<span className="text-teal">"Node.js"</span>,{"\n"}
+                  {"    "}<span className="text-teal">"Spring Boot"</span>,{"\n"}
                   {"  "}],{"\n"}
-                  {"  "}coffee:{" "}
-                  <span className="text-orange-600 dark:text-orange-300">true</span>,
+                  {"  "}coffee: <span className="text-orange-600 dark:text-orange-300">true</span>,
                   {"\n"}
                   {"}"};
                 </code>
@@ -428,13 +408,17 @@ export default function Page() {
 
               {/* Footer */}
               <div className="flex items-center justify-between border-t border-border px-5 py-3 text-xs text-muted-foreground">
-                <span>{t("Building digital experiences")}</span>
+                <span className="translated-code">
+                  {t("Building digital experiences")}
+                </span>
+
                 <span className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-teal" />
                   TypeScript
                 </span>
               </div>
             </div>
+
           </motion.div>
         </div>
 
