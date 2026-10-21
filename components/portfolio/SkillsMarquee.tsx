@@ -13,7 +13,7 @@ function Row({ skills, reverse = false }: { skills: Skill[]; reverse?: boolean }
         className="flex shrink-0 gap-4 pr-4"
       >
         {list.map((s, i) => (
-          <div key={`${s.name}-${i}`} className="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] py-2 pl-3 pr-5 text-sm text-white/60">
+          <div key={`${s.name}-${i}`} className="flex items-center gap-3 rounded-full border border-fg/10 bg-fg/[0.03] py-2 pl-3 pr-5 text-sm text-fg/60">
             <SkillIcon skill={s} size={20} /> {s.name}
           </div>
         ))}

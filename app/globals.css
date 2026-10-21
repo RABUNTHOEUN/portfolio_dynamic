@@ -5,10 +5,20 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: var(--brand-c);
+  --color-teal: var(--teal-c);
+  --color-ink: var(--ink);
+  --color-fg: var(--fg);
+  --color-strong: var(--strong);
+  --color-btn: var(--btn);
+  --color-btn-fg: var(--btn-fg);
+  --font-mono: var(--font-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -49,6 +59,14 @@
 }
 
 :root {
+  /* Site tokens — light mode (brand = violet accent, teal = green accent) */
+  --ink: #fafafa;
+  --fg: #0a0a0a;
+  --strong: #0a0a0a;
+  --brand-c: #3b82f6;
+  --teal-c: #15803d;
+  --btn: #0a0a0a;
+  --btn-fg: #ffffff;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -84,6 +102,14 @@
 }
 
 .dark {
+  /* Site tokens — dark mode */
+  --ink: #0a0a0a;
+  --fg: #ffffff;
+  --strong: #ffffff;
+  --brand-c: #3b82f6;
+  --teal-c: #86efac;
+  --btn: #ffffff;
+  --btn-fg: #000000;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -121,10 +147,136 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
+}
+
+
+/* =========================================
+   Khmer Typography — Moulpali
+========================================= */
+/* English heading sizes */
+.hero-title {
+  font-size: 3rem;
+  /* text-5xl */
+  line-height: 1.05;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3.75rem;
+    /* text-6xl */
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 6rem;
+    /* text-8xl */
+  }
+}
+
+/* Khmer heading sizes */
+html[lang="km"] .hero-title {
+  font-size: 3rem;
+  /* text-5xl */
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  html[lang="km"] .hero-title {
+    font-size: 3.75rem;
+    /* text-6xl */
+  }
+}
+
+@media (min-width: 1024px) {
+  html[lang="km"] .hero-title {
+    font-size: 3.75rem;
+    /* text-6xl */
+  }
+}
+
+/* Khmer body */
+html[lang="km"] body {
+  font-family: var(--font-khmer), sans-serif;
+  line-height: 1.8;
+  letter-spacing: normal;
+}
+
+/* Khmer headings */
+html[lang="km"] h1,
+html[lang="km"] h2,
+html[lang="km"] h3,
+html[lang="km"] h4,
+html[lang="km"] h5,
+html[lang="km"] h6 {
+  font-family: var(--font-khmer), sans-serif;
+  line-height: 1.6;
+  letter-spacing: normal;
+}
+
+/* Main heading */
+html[lang="km"] h1 {
+  line-height: 1.7;
+}
+
+/* Secondary headings */
+html[lang="km"] h2,
+html[lang="km"] h3 {
+  line-height: 1.6;
+}
+
+/* Khmer paragraphs and lists */
+html[lang="km"] p,
+html[lang="km"] li {
+  font-family: var(--font-khmer), sans-serif;
+  line-height: 1.9;
+  letter-spacing: normal;
+}
+
+/* Khmer form elements and buttons */
+html[lang="km"] button,
+html[lang="km"] label,
+html[lang="km"] input,
+html[lang="km"] textarea,
+html[lang="km"] select {
+  font-family: var(--font-khmer), sans-serif;
+  line-height: 1.8;
+  letter-spacing: normal;
+}
+
+/* Khmer character spacing */
+html[lang="km"] * {
+  letter-spacing: normal;
+}
+
+/* =========================================
+   Light Mode — Improve Soft Text Contrast
+========================================= */
+
+:root:not(.dark) .text-fg\/20 {
+  color: color-mix(in oklab, var(--fg) 45%, transparent);
+}
+
+:root:not(.dark) .text-fg\/30 {
+  color: color-mix(in oklab, var(--fg) 55%, transparent);
+}
+
+:root:not(.dark) .text-fg\/40 {
+  color: color-mix(in oklab, var(--fg) 65%, transparent);
+}
+
+:root:not(.dark) .text-fg\/50 {
+  color: color-mix(in oklab, var(--fg) 72%, transparent);
+}
+
+:root:not(.dark) .text-fg\/60 {
+  color: color-mix(in oklab, var(--fg) 80%, transparent);
 }

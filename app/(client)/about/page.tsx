@@ -1,5 +1,7 @@
-import { pageMetadata } from "@/lib/seo"
+"use client"
+
 import Reveal from "@/components/portfolio/Reveal"
+import { useLanguage } from "@/components/language-provider"
 import PageHeader from "@/components/portfolio/PageHeader"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -77,13 +79,8 @@ const technologies = [
   "Git",
 ]
 
-export const metadata = pageMetadata(
-  "About",
-  "Who I am, what I do, and how I approach building software.",
-  "/about",
-)
-
 export default function AboutPage() {
+  const { t } = useLanguage()
   return (
     <main className="mx-auto max-w-6xl px-6 pb-32">
 
@@ -91,8 +88,8 @@ export default function AboutPage() {
           HEADER
       ===================================================== */}
       <PageHeader
-        eyebrow="About me"
-        title="Turning ideas into useful products."
+        eyebrow={t("About me")}
+        title={t("Turning ideas into useful products.")}
       />
 
       {/* =====================================================
@@ -101,68 +98,52 @@ export default function AboutPage() {
       <section className="mt-16">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.7fr] lg:items-start">
 
-          <div className="space-y-6 text-lg leading-8 text-white/50">
+          <div className="space-y-6 text-lg leading-8 text-fg/50">
             <Reveal>
-              <p>
-                I&apos;m Ra Bunthoeun, a developer who enjoys turning
-                ideas, requirements, and real-world problems into
-                useful digital products.
-              </p>
+              <p>{t("I'm Ra Bunthoeun, a developer who enjoys turning ideas, requirements, and real-world problems into useful digital products.")}</p>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p>
-                My work spans frontend development, backend systems,
-                APIs, databases, CMS platforms, and deployment. I enjoy
-                working across the stack because understanding the
-                complete system helps me build better solutions.
-              </p>
+              <p>{t("My work spans frontend development, backend systems, APIs, databases, CMS platforms, and deployment. I enjoy working across the stack because understanding the complete system helps me build better solutions.")}</p>
             </Reveal>
 
             <Reveal delay={0.2}>
-              <p>
-                I&apos;m especially interested in software that helps
-                businesses work more efficiently — from websites and
-                content platforms to internal tools and business
-                applications.
-              </p>
+              <p>{t("I'm especially interested in software that helps businesses work more efficiently — from websites and content platforms to internal tools and business applications.")}</p>
             </Reveal>
           </div>
 
           {/* Developer card */}
           <Reveal delay={0.15}>
-            <Card className="border-white/10 bg-white/[0.02] text-white">
+            <Card className="border-fg/10 bg-fg/[0.02] text-fg">
               <CardHeader>
-                <CardTitle className="text-lg">
-                  Developer profile
-                </CardTitle>
+                <CardTitle className="text-lg">{t("Developer profile")}</CardTitle>
               </CardHeader>
 
               <CardContent>
                 <div className="space-y-5 text-sm">
-                  <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
-                    <span className="text-white/30">Role</span>
-                    <span>Developer</span>
+                  <div className="flex justify-between gap-6 border-b border-fg/10 pb-4">
+                    <span className="text-fg/30">{t("Role")}</span>
+                    <span>{t("Developer")}</span>
                   </div>
 
-                  <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
-                    <span className="text-white/30">Focus</span>
-                    <span>Web & Business Systems</span>
+                  <div className="flex justify-between gap-6 border-b border-fg/10 pb-4">
+                    <span className="text-fg/30">{t("Focus")}</span>
+                    <span>{t("Web & Business Systems")}</span>
                   </div>
 
-                  <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
-                    <span className="text-white/30">Frontend</span>
-                    <span>Nuxt / React / Next.js</span>
+                  <div className="flex justify-between gap-6 border-b border-fg/10 pb-4">
+                    <span className="text-fg/30">{t("Frontend")}</span>
+                    <span>{t("Nuxt / React / Next.js")}</span>
                   </div>
 
-                  <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
-                    <span className="text-white/30">Backend</span>
-                    <span>Spring Boot / Node.js</span>
+                  <div className="flex justify-between gap-6 border-b border-fg/10 pb-4">
+                    <span className="text-fg/30">{t("Backend")}</span>
+                    <span>{t("Spring Boot / Node.js")}</span>
                   </div>
 
                   <div className="flex justify-between gap-6">
-                    <span className="text-white/30">Database</span>
-                    <span>MySQL</span>
+                    <span className="text-fg/30">{t("Database")}</span>
+                    <span>{t("MySQL")}</span>
                   </div>
                 </div>
               </CardContent>
@@ -177,35 +158,27 @@ export default function AboutPage() {
       ===================================================== */}
       <section className="mt-32">
         <Reveal>
-          <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-            What I do
-          </p>
+          <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("What I do")}</p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-            Building across the stack.
-          </h2>
+          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{t("Building across the stack.")}</h2>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/40">
-            I work across different parts of a product, from the
-            interface users interact with to the backend systems that
-            power it.
-          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-fg/40">{t("I work across different parts of a product, from the interface users interact with to the backend systems that power it.")}</p>
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {focus.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.12}>
-              <Card className="group h-full border-white/10 bg-white/[0.02] text-white transition-all duration-300 hover:-translate-y-1 hover:border-violet-400/30 hover:bg-white/[0.04]">
+            <Reveal key={t(item.title)} delay={index * 0.12}>
+              <Card className="group h-full border-fg/10 bg-fg/[0.02] text-fg transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:bg-fg/[0.04]">
                 <CardHeader>
-                  <div className="mb-4 text-sm text-violet-400">
+                  <div className="mb-4 text-sm text-brand">
                     0{index + 1}
                   </div>
 
-                  <CardTitle>{item.title}</CardTitle>
+                  <CardTitle>{t(item.title)}</CardTitle>
                 </CardHeader>
 
-                <CardContent className="leading-7 text-white/50">
-                  {item.text}
+                <CardContent className="leading-7 text-fg/50">
+                  {t(item.text)}
                 </CardContent>
               </Card>
             </Reveal>
@@ -218,29 +191,25 @@ export default function AboutPage() {
       ===================================================== */}
       <section className="mt-32">
         <Reveal>
-          <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-            Experience
-          </p>
+          <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("Experience")}</p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-            Always building, always learning.
-          </h2>
+          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{t("Always building, always learning.")}</h2>
         </Reveal>
 
         <div className="mt-12">
           {experience.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.1}>
-              <div className="grid gap-6 border-t border-white/10 py-8 md:grid-cols-[120px_240px_1fr]">
-                <span className="text-sm text-violet-400">
-                  {item.year}
+            <Reveal key={t(item.title)} delay={index * 0.1}>
+              <div className="grid gap-6 border-t border-fg/10 py-8 md:grid-cols-[120px_240px_1fr]">
+                <span className="text-sm text-brand">
+                  {t(item.year)}
                 </span>
 
                 <h3 className="text-xl font-semibold">
-                  {item.title}
+                  {t(item.title)}
                 </h3>
 
-                <p className="max-w-2xl leading-7 text-white/40">
-                  {item.text}
+                <p className="max-w-2xl leading-7 text-fg/40">
+                  {t(item.text)}
                 </p>
               </div>
             </Reveal>
@@ -253,29 +222,25 @@ export default function AboutPage() {
       ===================================================== */}
       <section className="mt-32">
         <Reveal>
-          <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-            How I think
-          </p>
+          <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("How I think")}</p>
 
-          <h2 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-            My approach to building software.
-          </h2>
+          <h2 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">{t("My approach to building software.")}</h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-fg/10 bg-fg/10 md:grid-cols-2">
           {principles.map((item) => (
             <Reveal key={item.number}>
-              <div className="h-full bg-[#0b0b0b] p-8 transition-colors duration-300 hover:bg-white/[0.04] sm:p-10">
-                <span className="text-sm text-violet-400">
+              <div className="h-full bg-ink p-8 transition-colors duration-300 hover:bg-fg/[0.04] sm:p-10">
+                <span className="text-sm text-brand">
                   {item.number}
                 </span>
 
                 <h3 className="mt-8 text-xl font-semibold">
-                  {item.title}
+                  {t(item.title)}
                 </h3>
 
-                <p className="mt-4 leading-7 text-white/40">
-                  {item.text}
+                <p className="mt-4 leading-7 text-fg/40">
+                  {t(item.text)}
                 </p>
               </div>
             </Reveal>
@@ -288,24 +253,17 @@ export default function AboutPage() {
       ===================================================== */}
       <section className="mt-32">
         <Reveal>
-          <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-            Technology
-          </p>
+          <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("Technology")}</p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-            Tools I&apos;m comfortable building with.
-          </h2>
+          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{t("Tools I'm comfortable building with.")}</h2>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/40">
-            My toolkit continues to evolve, but these are some of the
-            technologies I use and explore across my projects.
-          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-fg/40">{t("My toolkit continues to evolve, but these are some of the technologies I use and explore across my projects.")}</p>
         </Reveal>
 
         <div className="mt-12 flex flex-wrap gap-3">
           {technologies.map((technology, index) => (
             <Reveal key={technology} delay={index * 0.03}>
-              <span className="inline-flex rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-white/60 transition-colors hover:border-violet-400/30 hover:text-white">
+              <span className="inline-flex rounded-full border border-fg/10 bg-fg/[0.02] px-4 py-2 text-sm text-fg/60 transition-colors hover:border-brand/30 hover:text-fg">
                 {technology}
               </span>
             </Reveal>
@@ -318,22 +276,13 @@ export default function AboutPage() {
       ===================================================== */}
       <section className="mt-32">
         <Reveal>
-          <Card className="overflow-hidden border-white/10 bg-gradient-to-br from-violet-500/[0.08] via-white/[0.02] to-transparent text-white">
+          <Card className="overflow-hidden border-fg/10 bg-gradient-to-br from-brand/[0.12] via-fg/[0.02] to-transparent text-fg">
             <CardContent className="p-8 sm:p-12">
-              <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-                Currently learning
-              </p>
+              <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("Currently learning")}</p>
 
-              <h2 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-                Going deeper, not just wider.
-              </h2>
+              <h2 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">{t("Going deeper, not just wider.")}</h2>
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/50">
-                I&apos;m continuing to improve my understanding of
-                architecture, application performance, UI/UX,
-                deployment, and building software that can grow with
-                real-world requirements.
-              </p>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-fg/50">{t("I'm continuing to improve my understanding of architecture, application performance, UI/UX, deployment, and building software that can grow with real-world requirements.")}</p>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 {[
@@ -345,9 +294,9 @@ export default function AboutPage() {
                 ].map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/50"
+                    className="rounded-full border border-fg/10 px-4 py-2 text-sm text-fg/50"
                   >
-                    {item}
+                    {t(item)}
                   </span>
                 ))}
               </div>
@@ -361,22 +310,12 @@ export default function AboutPage() {
       ===================================================== */}
       <section className="mt-32">
         <Reveal>
-          <div className="border-y border-white/10 py-16 text-center">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-              Beyond the code
-            </p>
+          <div className="border-y border-fg/10 py-16 text-center">
+            <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("Beyond the code")}</p>
 
-            <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-              I enjoy learning, experimenting, and turning ideas into
-              things that actually work.
-            </h2>
+            <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">{t("I enjoy learning, experimenting, and turning ideas into things that actually work.")}</h2>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/40">
-              For me, development is not only about writing code.
-              It&apos;s about understanding people, solving problems,
-              learning from mistakes, and continuously improving the
-              way products are built.
-            </p>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-fg/40">{t("For me, development is not only about writing code. It's about understanding people, solving problems, learning from mistakes, and continuously improving the way products are built.")}</p>
           </div>
         </Reveal>
       </section>
@@ -386,27 +325,18 @@ export default function AboutPage() {
       ===================================================== */}
       <section className="mt-32">
         <Reveal>
-          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 text-center sm:p-12 lg:p-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-              Let&apos;s work together
-            </p>
+          <div className="rounded-3xl border border-fg/10 bg-fg/[0.02] p-8 text-center sm:p-12 lg:p-16">
+            <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("Let's work together")}</p>
 
-            <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-              Have an idea worth building?
-            </h2>
+            <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">{t("Have an idea worth building?")}</h2>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/40">
-              Whether it&apos;s a website, business application, or
-              something completely new, I&apos;d love to hear about it.
-            </p>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-fg/40">{t("Whether it's a website, business application, or something completely new, I'd love to hear about it.")}</p>
 
             <div className="mt-10">
               <a
                 href="/contact"
-                className="inline-flex rounded-full bg-white px-6 py-3 font-medium text-black transition hover:bg-violet-100"
-              >
-                Start a conversation →
-              </a>
+                className="inline-flex rounded-full bg-btn px-6 py-3 font-medium text-btn-fg transition hover:bg-btn/85"
+              >{t("Start a conversation →")}</a>
             </div>
           </div>
         </Reveal>

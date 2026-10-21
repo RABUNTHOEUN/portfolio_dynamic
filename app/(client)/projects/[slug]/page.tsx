@@ -103,7 +103,7 @@ export default async function ProjectPage({ params }: Props) {
 
         <Link
           href="/projects"
-          className="group inline-flex items-center gap-2 text-sm text-white/50 transition hover:text-white"
+          className="group inline-flex items-center gap-2 text-sm text-fg/50 transition hover:text-fg"
         >
           <ArrowLeft className="size-4 transition group-hover:-translate-x-1" />
 
@@ -117,16 +117,16 @@ export default async function ProjectPage({ params }: Props) {
         <header className="mt-12">
 
           {/* Meta */}
-          <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-[0.25em] text-violet-400">
+          <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-[0.25em] text-brand">
             <span>{project.number}</span>
 
-            <span className="text-white/20">
+            <span className="text-fg/20">
               •
             </span>
 
             <span>{project.category}</span>
 
-            <span className="text-white/20">
+            <span className="text-fg/20">
               •
             </span>
 
@@ -139,7 +139,7 @@ export default async function ProjectPage({ params }: Props) {
           </h1>
 
           {/* Description */}
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-white/50 sm:text-xl">
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-fg/50 sm:text-xl">
             {project.description}
           </p>
 
@@ -155,7 +155,7 @@ export default async function ProjectPage({ params }: Props) {
                   buttonVariants({
                     size: "lg",
                   }),
-                  "rounded-full bg-white px-6 text-black hover:bg-violet-100"
+                  "rounded-full bg-btn px-6 text-btn-fg hover:bg-btn/85"
                 )}
               >
                 <ExternalLink className="mr-2 size-4" />
@@ -174,7 +174,7 @@ export default async function ProjectPage({ params }: Props) {
                     variant: "outline",
                     size: "lg",
                   }),
-                  "rounded-full border-white/15 bg-transparent px-6 text-white hover:bg-white/5"
+                  "rounded-full border-fg/15 bg-transparent px-6 text-fg hover:bg-fg/5"
                 )}
               >
                 <GitBranchIcon className="mr-2 size-4" />
@@ -190,10 +190,10 @@ export default async function ProjectPage({ params }: Props) {
         ========================================================= */}
 
         {project.image && (
-          <div className="group relative mt-14 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02]">
+          <div className="group relative mt-14 overflow-hidden rounded-3xl border border-fg/10 bg-fg/[0.02]">
 
             {/* Glow */}
-            <div className="pointer-events-none absolute -inset-10 bg-violet-500/10 opacity-0 blur-3xl transition duration-700 group-hover:opacity-100" />
+            <div className="pointer-events-none absolute -inset-10 bg-brand/10 opacity-0 blur-3xl transition duration-700 group-hover:opacity-100" />
 
             <img
               src={project.image}
@@ -212,7 +212,7 @@ export default async function ProjectPage({ params }: Props) {
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
 
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
+              <p className="text-sm uppercase tracking-[0.3em] text-brand">
                 Overview
               </p>
 
@@ -221,7 +221,7 @@ export default async function ProjectPage({ params }: Props) {
               </h2>
             </div>
 
-            <div className="space-y-5 text-lg leading-8 text-white/50">
+            <div className="space-y-5 text-lg leading-8 text-fg/50">
 
               <p>
                 {project.description}
@@ -266,11 +266,11 @@ export default async function ProjectPage({ params }: Props) {
               .map((item) => (
                 <Card
                   key={item.label}
-                  className="border-white/10 bg-white/[0.02] text-white transition duration-300 hover:border-violet-400/20 hover:bg-white/[0.04]"
+                  className="border-fg/10 bg-fg/[0.02] text-fg transition duration-300 hover:border-brand/20 hover:bg-fg/[0.04]"
                 >
                   <CardContent className="p-6">
 
-                    <p className="text-xs uppercase tracking-widest text-white/30">
+                    <p className="text-xs uppercase tracking-widest text-fg/30">
                       {item.label}
                     </p>
 
@@ -286,7 +286,7 @@ export default async function ProjectPage({ params }: Props) {
 
         </section>
 
-        <Separator className="my-16 bg-white/10" />
+        <Separator className="my-16 bg-fg/10" />
 
         {/* =========================================================
             TECH STACK
@@ -296,12 +296,12 @@ export default async function ProjectPage({ params }: Props) {
 
           <div className="flex items-center gap-3">
 
-            <div className="flex size-10 items-center justify-center rounded-xl bg-violet-400/10">
-              <Code2 className="size-5 text-violet-400" />
+            <div className="flex size-10 items-center justify-center rounded-xl bg-brand/10">
+              <Code2 className="size-5 text-brand" />
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-white/30">
+              <p className="text-xs uppercase tracking-[0.3em] text-fg/30">
                 Technologies
               </p>
 
@@ -318,7 +318,7 @@ export default async function ProjectPage({ params }: Props) {
               <Badge
                 key={technology}
                 variant="outline"
-                className="border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/80 transition hover:border-violet-400/40 hover:bg-violet-400/5"
+                className="border-fg/10 bg-fg/[0.03] px-4 py-2 text-sm text-fg/80 transition hover:border-brand/40 hover:bg-brand/5"
               >
                 {technology}
               </Badge>
@@ -337,12 +337,12 @@ export default async function ProjectPage({ params }: Props) {
           {/* Features */}
           {project.features &&
             project.features.length > 0 && (
-              <Card className="border-white/10 bg-white/[0.02] text-white transition duration-300 hover:border-violet-400/20">
+              <Card className="border-fg/10 bg-fg/[0.02] text-fg transition duration-300 hover:border-brand/20">
 
                 <CardHeader>
 
-                  <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-violet-400/10">
-                    <Layers3 className="size-5 text-violet-400" />
+                  <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-brand/10">
+                    <Layers3 className="size-5 text-brand" />
                   </div>
 
                   <CardTitle>
@@ -353,14 +353,14 @@ export default async function ProjectPage({ params }: Props) {
 
                 <CardContent>
 
-                  <ul className="space-y-4 text-white/60">
+                  <ul className="space-y-4 text-fg/60">
 
                     {project.features.map((feature) => (
                       <li
                         key={feature}
                         className="flex gap-3"
                       >
-                        <Check className="mt-1 size-4 shrink-0 text-violet-400" />
+                        <Check className="mt-1 size-4 shrink-0 text-brand" />
 
                         <span>
                           {feature}
@@ -378,12 +378,12 @@ export default async function ProjectPage({ params }: Props) {
           {/* Challenges */}
           {project.challenges &&
             project.challenges.length > 0 && (
-              <Card className="border-white/10 bg-white/[0.02] text-white transition duration-300 hover:border-violet-400/20">
+              <Card className="border-fg/10 bg-fg/[0.02] text-fg transition duration-300 hover:border-brand/20">
 
                 <CardHeader>
 
-                  <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-violet-400/10">
-                    <Lightbulb className="size-5 text-violet-400" />
+                  <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-brand/10">
+                    <Lightbulb className="size-5 text-brand" />
                   </div>
 
                   <CardTitle>
@@ -394,14 +394,14 @@ export default async function ProjectPage({ params }: Props) {
 
                 <CardContent>
 
-                  <ul className="space-y-4 text-white/60">
+                  <ul className="space-y-4 text-fg/60">
 
                     {project.challenges.map((challenge) => (
                       <li
                         key={challenge}
                         className="flex gap-3"
                       >
-                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-violet-400" />
+                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
 
                         <span>
                           {challenge}
@@ -430,11 +430,11 @@ export default async function ProjectPage({ params }: Props) {
 
               <div className="flex items-center gap-3">
 
-                <div className="flex size-10 items-center justify-center rounded-xl bg-violet-400/10">
-                  <Target className="size-5 text-violet-400" />
+                <div className="flex size-10 items-center justify-center rounded-xl bg-brand/10">
+                  <Target className="size-5 text-brand" />
                 </div>
 
-                <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
+                <p className="text-sm uppercase tracking-[0.3em] text-brand">
                   Approach
                 </p>
 
@@ -444,7 +444,7 @@ export default async function ProjectPage({ params }: Props) {
                 From idea to implementation.
               </h2>
 
-              <p className="mt-4 max-w-md leading-7 text-white/40">
+              <p className="mt-4 max-w-md leading-7 text-fg/40">
                 A practical development process focused on
                 understanding the problem, building the right
                 solution, and continuously improving the result.
@@ -473,11 +473,11 @@ export default async function ProjectPage({ params }: Props) {
               ].map((step) => (
                 <Card
                   key={step.number}
-                  className="border-white/10 bg-white/[0.02] text-white"
+                  className="border-fg/10 bg-fg/[0.02] text-fg"
                 >
                   <CardContent className="p-6">
 
-                    <span className="font-mono text-sm text-violet-400">
+                    <span className="font-mono text-sm text-brand">
                       {step.number}
                     </span>
 
@@ -485,7 +485,7 @@ export default async function ProjectPage({ params }: Props) {
                       {step.title}
                     </h3>
 
-                    <p className="mt-2 text-sm leading-6 text-white/40">
+                    <p className="mt-2 text-sm leading-6 text-fg/40">
                       {step.text}
                     </p>
 
@@ -510,7 +510,7 @@ export default async function ProjectPage({ params }: Props) {
               <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
 
                 <div>
-                  <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
+                  <p className="text-sm uppercase tracking-[0.3em] text-brand">
                     Outcomes
                   </p>
 
@@ -518,7 +518,7 @@ export default async function ProjectPage({ params }: Props) {
                     What this project achieved.
                   </h2>
 
-                  <p className="mt-4 max-w-md leading-7 text-white/40">
+                  <p className="mt-4 max-w-md leading-7 text-fg/40">
                     The main results and improvements delivered
                     through the project.
                   </p>
@@ -531,13 +531,13 @@ export default async function ProjectPage({ params }: Props) {
                     {project.outcomes.map((outcome) => (
                       <li
                         key={outcome}
-                        className="group flex gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition duration-300 hover:border-violet-400/30 hover:bg-violet-400/[0.03]"
+                        className="group flex gap-4 rounded-2xl border border-fg/10 bg-fg/[0.02] p-5 transition duration-300 hover:border-brand/30 hover:bg-brand/[0.03]"
                       >
-                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-violet-400/10">
-                          <Check className="size-4 text-violet-400" />
+                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand/10">
+                          <Check className="size-4 text-brand" />
                         </div>
 
-                        <span className="leading-7 text-white/60">
+                        <span className="leading-7 text-fg/60">
                           {outcome}
                         </span>
                       </li>
@@ -556,18 +556,18 @@ export default async function ProjectPage({ params }: Props) {
             PROJECT SUMMARY
         ========================================================= */}
 
-        <Separator className="my-16 bg-white/10" />
+        <Separator className="my-16 bg-fg/10" />
 
         <section>
 
-          <p className="text-xs uppercase tracking-[0.3em] text-white/30">
+          <p className="text-xs uppercase tracking-[0.3em] text-fg/30">
             Project summary
           </p>
 
           <div className="mt-6 grid gap-8 sm:grid-cols-3">
 
             <div>
-              <p className="text-xs uppercase tracking-widest text-white/30">
+              <p className="text-xs uppercase tracking-widest text-fg/30">
                 Category
               </p>
 
@@ -577,7 +577,7 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-widest text-white/30">
+              <p className="text-xs uppercase tracking-widest text-fg/30">
                 Year
               </p>
 
@@ -587,7 +587,7 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-widest text-white/30">
+              <p className="text-xs uppercase tracking-widest text-fg/30">
                 Technologies
               </p>
 
@@ -604,22 +604,22 @@ export default async function ProjectPage({ params }: Props) {
             NEXT PROJECT
         ========================================================= */}
 
-        <Separator className="my-16 bg-white/10" />
+        <Separator className="my-16 bg-fg/10" />
 
         <section>
 
-          <p className="text-xs uppercase tracking-[0.3em] text-white/30">
+          <p className="text-xs uppercase tracking-[0.3em] text-fg/30">
             Continue exploring
           </p>
 
           <Link
             href={`/projects/${next.slug}`}
-            className="group mt-5 flex items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-6 transition duration-300 hover:border-violet-400/40 hover:bg-violet-400/[0.03] sm:p-8"
+            className="group mt-5 flex items-center justify-between overflow-hidden rounded-3xl border border-fg/10 bg-fg/[0.02] p-6 transition duration-300 hover:border-brand/40 hover:bg-brand/[0.03] sm:p-8"
           >
 
             <div>
 
-              <p className="text-sm text-white/40">
+              <p className="text-sm text-fg/40">
                 Next project
               </p>
 
@@ -627,14 +627,14 @@ export default async function ProjectPage({ params }: Props) {
                 {next.title}
               </p>
 
-              <p className="mt-2 max-w-xl text-sm leading-6 text-white/40">
+              <p className="mt-2 max-w-xl text-sm leading-6 text-fg/40">
                 {next.shortDescription}
               </p>
 
             </div>
 
-            <div className="ml-6 flex size-12 shrink-0 items-center justify-center rounded-full border border-white/10 transition duration-300 group-hover:border-violet-400/40 group-hover:bg-violet-400/10">
-              <ArrowRight className="size-5 text-white/50 transition group-hover:translate-x-1 group-hover:text-violet-400" />
+            <div className="ml-6 flex size-12 shrink-0 items-center justify-center rounded-full border border-fg/10 transition duration-300 group-hover:border-brand/40 group-hover:bg-brand/10">
+              <ArrowRight className="size-5 text-fg/50 transition group-hover:translate-x-1 group-hover:text-brand" />
             </div>
 
           </Link>
@@ -649,7 +649,7 @@ export default async function ProjectPage({ params }: Props) {
 
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-sm text-white/40 transition hover:text-white"
+            className="inline-flex items-center gap-2 text-sm text-fg/40 transition hover:text-fg"
           >
             <ArrowLeft className="size-4" />
 

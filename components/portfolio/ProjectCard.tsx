@@ -17,19 +17,19 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }}>
       <Link href={`/projects/${project.slug}`} className="group block h-full">
-        <Card className="h-full gap-5 border-white/10 bg-white/[0.02] text-white transition-colors group-hover:border-violet-400/40">
+        <Card className="h-full gap-5 border-fg/10 bg-fg/[0.02] text-fg transition-colors group-hover:border-brand/40">
           <CardHeader>
             <div className="flex items-start justify-between">
-              <span className="text-5xl font-bold text-white/10 transition-colors group-hover:text-violet-400/50">
+              <span className="text-5xl font-bold text-fg/10 transition-colors group-hover:text-brand/50">
                 {project.number}
               </span>
-              <ArrowUpRight className="size-5 text-white/30 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-violet-400" />
+              <ArrowUpRight className="size-5 text-fg/30 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
             </div>
-            <p className="text-xs uppercase tracking-widest text-white/40">
+            <p className="text-xs uppercase tracking-widest text-fg/40">
               {project.category} · {project.year}
             </p>
             <CardTitle className="text-2xl">{project.title}</CardTitle>
-            <CardDescription className="text-white/50">
+            <CardDescription className="text-fg/50">
               {project.shortDescription}
             </CardDescription>
           </CardHeader>
@@ -38,7 +38,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               <Badge
                 key={tech}
                 variant="outline"
-                className="border-white/15 text-white/60"
+                className="border-fg/15 text-fg/60"
               >
                 {tech}
               </Badge>

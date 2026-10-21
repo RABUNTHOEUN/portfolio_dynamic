@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLanguage } from "@/components/language-provider"
 import ProjectsSection from "@/components/portfolio/ProjectsSection";
 import { projects } from "@/data/projects";
 import { site } from "@/data/site";
@@ -131,6 +132,8 @@ function MagneticButton({
     y.set(0);
   }
 
+
+
   return (
     <MotionLink
       href={href}
@@ -147,8 +150,8 @@ function MagneticButton({
         "inline-flex items-center justify-center rounded-full px-6 py-3 font-medium",
         "transition-colors duration-300",
         primary
-          ? "bg-white text-black hover:bg-violet-100"
-          : "border border-white/15 text-white hover:border-white/40 hover:bg-white/5",
+          ? "bg-btn text-btn-fg hover:bg-btn/85"
+          : "border border-fg/15 text-fg hover:border-fg/40 hover:bg-fg/5",
       ].join(" ")}
     >
       {children}
@@ -157,8 +160,9 @@ function MagneticButton({
 }
 
 export default function Page() {
+  const { t } = useLanguage()
   const technologies = [
-    { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+    { name: "Next.js", icon: SiNextdotjs, color: "var(--strong)" },
     { name: "React", icon: SiReact, color: "#61DAFB" },
     { name: "Nuxt", icon: SiNuxt, color: "#00DC82" },
     { name: "Vue", icon: SiVuedotjs, color: "#42B883" },
@@ -192,7 +196,7 @@ export default function Page() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-violet-600/20 blur-[120px]"
+            className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/20 blur-[120px]"
           />
 
           {/* Secondary glow */}
@@ -215,7 +219,7 @@ export default function Page() {
             className="absolute inset-0 opacity-[0.035]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
+                "linear-gradient(rgba(100,116,139,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(100,116,139,.8) 1px, transparent 1px)",
               backgroundSize: "80px 80px",
             }}
           />
@@ -233,7 +237,7 @@ export default function Page() {
             {/* Availability */}
             <motion.div
               variants={fadeUp}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/60"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-fg/10 bg-fg/5 px-4 py-2 text-sm text-fg/60"
             >
               <motion.span
                 animate={{
@@ -244,25 +248,23 @@ export default function Page() {
                   duration: 1.8,
                   repeat: Infinity,
                 }}
-                className="h-2 w-2 rounded-full bg-green-400"
-              />
-              Available for opportunities
-            </motion.div>
+                className="h-2 w-2 rounded-full bg-teal"
+              />{t("Available for opportunities")}</motion.div>
 
             {/* Eyebrow */}
             <motion.p
               variants={fadeUp}
-              className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-violet-400"
+              className="mb-10 text-sm font-medium uppercase tracking-[0.3em] text-brand"
             >
-              Developer & Problem Solver
+              {t("Developer & Problem Solver")}
             </motion.p>
 
             {/* Heading */}
             <motion.h1
               variants={fadeUp}
-              className="max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-8xl"
+              className="hero-title max-w-4xl font-bold tracking-tight"
             >
-              I build digital
+              {t("Turning Ideas")}
               <motion.span
                 initial={{
                   opacity: 0,
@@ -277,51 +279,45 @@ export default function Page() {
                   delay: 0.6,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="block bg-gradient-to-r from-white via-violet-200 to-violet-500 bg-clip-text text-transparent"
+                className="block bg-gradient-to-r from-strong via-brand to-brand bg-clip-text text-transparent"
               >
-                experiences.
+                {t("Into Digital Reality.")}
               </motion.span>
             </motion.h1>
 
             {/* Description */}
             <motion.p
               variants={fadeUp}
-              className="mt-8 max-w-2xl text-lg leading-8 text-white/50"
-            >
-              I'm a developer focused on building modern web applications,
-              business systems, and digital products that solve real-world
-              problems.
-            </motion.p>
+              className="mt-8 max-w-2xl text-lg leading-8 text-fg/50"
+            >{t("I'm a developer focused on building modern web applications, business systems, and digital products that solve real-world problems.")}</motion.p>
 
             {/* CTA buttons */}
             <motion.div
               variants={fadeUp}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <MagneticButton href="/projects" primary>
-                View my work
-              </MagneticButton>
+              <MagneticButton href="/projects" primary>{t("View my work")}</MagneticButton>
 
-              <MagneticButton href="/contact">Contact me</MagneticButton>
+              <MagneticButton href="/contact">{t("Contact me")}</MagneticButton>
             </motion.div>
 
             {/* Social links */}
             <motion.div
               variants={fadeUp}
-              className="mt-12 flex items-center gap-6 text-sm text-white/40"
+              className="mt-12 flex items-center gap-6 text-sm text-fg/40"
             >
               {site.socials.map((social) => (
                 <motion.a
-                  key={social.label}
+                  key={t(social.label)}
                   href={social.href}
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{
                     y: -3,
-                    color: "#ffffff",
+                    color: "var(--strong)",
                   }}
                 >
-                  {social.label}
+                  {t(social.label)}
                 </motion.a>
               ))}
             </motion.div>
@@ -367,18 +363,27 @@ export default function Page() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute -inset-6 rounded-3xl bg-violet-500/10 blur-3xl"
+              className="absolute -inset-6 rounded-3xl bg-brand/10 blur-3xl"
             />
 
-            {/* Code window */}
-            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#111111] shadow-2xl">
-              {/* Window header */}
-              <div className="flex items-center gap-2 border-b border-white/10 px-5 py-4">
-                <span className="h-3 w-3 rounded-full bg-red-400/70" />
-                <span className="h-3 w-3 rounded-full bg-yellow-400/70" />
-                <span className="h-3 w-3 rounded-full bg-green-400/70" />
 
-                <span className="ml-3 text-xs text-white/30">
+            {/* Code window */}
+            <div
+              className="
+    relative overflow-hidden rounded-2xl
+    border border-border
+    bg-card text-card-foreground
+    shadow-xl
+    transition-colors duration-300
+  "
+            >
+              {/* Window header */}
+              <div className="flex items-center gap-2 border-b border-border px-5 py-4">
+                <span className="h-3 w-3 rounded-full bg-red-400/80" />
+                <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
+                <span className="h-3 w-3 rounded-full bg-teal/80" />
+
+                <span className="ml-3 text-xs text-muted-foreground">
                   portfolio.tsx
                 </span>
               </div>
@@ -386,38 +391,49 @@ export default function Page() {
               {/* Code */}
               <pre className="overflow-x-auto p-6 text-sm leading-7">
                 <code>
-                  <span className="text-violet-400">const</span>{" "}
-                  <span className="text-blue-300">developer</span> = {"{"}
+                  <span className="text-brand font-semibold">const</span>{" "}
+                  <span className="text-blue-500 dark:text-blue-300">developer</span> = {"{"}
                   {"\n"}
                   {"  "}name:{" "}
-                  <span className="text-green-300">"Ra Bunthoeun"</span>,{"\n"}
+                  <span className="text-teal">"Ra Bunthoeun"</span>,{"\n"}
                   {"  "}role:{" "}
-                  <span className="text-green-300">"Developer"</span>,{"\n"}
+                  <span className="text-teal">"{t("Developer")}"</span>,{"\n"}
                   {"  "}focus: [{"\n"}
                   {"    "}
-                  <span className="text-green-300">"Web Development"</span>,
+                  <span className="text-teal">"{t("Web Development")}"</span>,
                   {"\n"}
                   {"    "}
-                  <span className="text-green-300">"Business Systems"</span>,
+                  <span className="text-teal">"{t("Business Systems")}"</span>,
                   {"\n"}
                   {"    "}
-                  <span className="text-green-300">"UI/UX"</span>,{"\n"}
+                  <span className="text-teal">"{t("UI/UX Design")}"</span>,
+                  {"\n"}
                   {"  "}],{"\n"}
                   {"  "}stack: [{"\n"}
                   {"    "}
-                  <span className="text-green-300">"Nuxt"</span>,{"\n"}
+                  <span className="text-teal">"Nuxt"</span>,{"\n"}
                   {"    "}
-                  <span className="text-green-300">"React"</span>,{"\n"}
+                  <span className="text-teal">"React"</span>,{"\n"}
                   {"    "}
-                  <span className="text-green-300">"Node.js"</span>,{"\n"}
+                  <span className="text-teal">"Node.js"</span>,{"\n"}
                   {"    "}
-                  <span className="text-green-300">"Spring Boot"</span>,{"\n"}
+                  <span className="text-teal">"Spring Boot"</span>,{"\n"}
                   {"  "}],{"\n"}
-                  {"  "}coffee: <span className="text-orange-300">true</span>,
+                  {"  "}coffee:{" "}
+                  <span className="text-orange-600 dark:text-orange-300">true</span>,
                   {"\n"}
                   {"}"};
                 </code>
               </pre>
+
+              {/* Footer */}
+              <div className="flex items-center justify-between border-t border-border px-5 py-3 text-xs text-muted-foreground">
+                <span>{t("Building digital experiences")}</span>
+                <span className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-teal" />
+                  TypeScript
+                </span>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -435,9 +451,9 @@ export default function Page() {
           transition={{
             delay: 1.5,
           }}
-          className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs text-white/30 md:flex"
+          className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs text-fg/30 md:flex"
         >
-          <span>Scroll to explore</span>
+          <span>{t("Scroll to explore")}</span>
 
           <motion.div
             animate={{
@@ -448,7 +464,7 @@ export default function Page() {
               duration: 1.8,
               repeat: Infinity,
             }}
-            className="h-10 w-px origin-top bg-gradient-to-b from-white/60 to-transparent"
+            className="h-10 w-px origin-top bg-gradient-to-b from-fg/60 to-transparent"
           />
         </motion.div>
       </section>
@@ -456,35 +472,22 @@ export default function Page() {
       {/* =========================================================
     ABOUT
 ========================================================= */}
-      <section className="border-t border-white/10 py-32">
+      <section className="border-t border-fg/10 py-32">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-              About me
-            </p>
+            <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("About me")}</p>
 
             <div className="mt-6 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Turning ideas into
-                <span className="block text-white/30">
-                  useful digital products.
-                </span>
+              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">{t("Turning ideas into")}<span className="block text-fg/30">{t("useful digital products.")}</span>
               </h2>
 
               <div className="max-w-2xl">
-                <p className="text-lg leading-8 text-white/50">
-                  I&apos;m Ra Bunthoeun, a developer focused on building modern
-                  web applications, business systems, and digital experiences.
-                </p>
+                <p className="text-lg leading-8 text-fg/50">{t("I'm Ra Bunthoeun, a developer focused on building modern web applications, business systems, and digital experiences.")}</p>
 
-                <p className="mt-6 text-lg leading-8 text-white/40">
-                  I enjoy solving real-world problems with clean interfaces,
-                  reliable APIs, scalable architecture, and thoughtful user
-                  experiences.
-                </p>
+                <p className="mt-6 text-lg leading-8 text-fg/40">{t("I enjoy solving real-world problems with clean interfaces, reliable APIs, scalable architecture, and thoughtful user experiences.")}</p>
 
                 <div className="mt-8">
-                  <MagneticButton href="/about">More about me →</MagneticButton>
+                  <MagneticButton href="/about">{t("More about me →")}</MagneticButton>
                 </div>
               </div>
             </div>
@@ -495,21 +498,14 @@ export default function Page() {
       {/* =========================================================
     WHAT I BUILD
 ========================================================= */}
-      <section className="border-t border-white/10 py-32">
+      <section className="border-t border-fg/10 py-32">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="max-w-3xl">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-              What I build
-            </p>
+            <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("What I build")}</p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-              Digital products that solve real problems.
-            </h2>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{t("Digital products that solve real problems.")}</h2>
 
-            <p className="mt-6 text-lg leading-8 text-white/40">
-              From business platforms to modern websites, I focus on building
-              software that is practical, maintainable, and easy to use.
-            </p>
+            <p className="mt-6 text-lg leading-8 text-fg/40">{t("From business platforms to modern websites, I focus on building software that is practical, maintainable, and easy to use.")}</p>
           </Reveal>
 
           <motion.div
@@ -517,7 +513,7 @@ export default function Page() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2"
+            className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-fg/10 bg-fg/10 md:grid-cols-2"
           >
             {[
               {
@@ -552,30 +548,30 @@ export default function Page() {
               <motion.div
                 key={item.number}
                 variants={fadeUp}
-                className="group bg-[#0b0b0b] p-8 transition-colors duration-500 hover:bg-white/[0.04] sm:p-10"
+                className="group bg-ink p-8 transition-colors duration-500 hover:bg-fg/[0.04] sm:p-10"
               >
                 <div className="flex items-start justify-between">
-                  <span className="text-sm text-white/20">{item.number}</span>
+                  <span className="text-sm text-fg/20">{item.number}</span>
 
                   <motion.span
                     whileHover={{ x: 5 }}
-                    className="text-white/20 transition group-hover:text-violet-400"
+                    className="text-fg/20 transition group-hover:text-brand"
                   >
                     ↗
                   </motion.span>
                 </div>
 
-                <h3 className="mt-16 text-2xl font-semibold">{item.title}</h3>
+                <h3 className="mt-16 text-2xl font-semibold">{t(item.title)}</h3>
 
-                <p className="mt-4 leading-7 text-white/40">
-                  {item.description}
+                <p className="mt-4 leading-7 text-fg/40">
+                  {t(item.description)}
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/40"
+                      className="rounded-full border border-fg/10 px-3 py-1 text-xs text-fg/40"
                     >
                       {tag}
                     </span>
@@ -590,16 +586,12 @@ export default function Page() {
       {/* =========================================================
     TECH STACK
 ========================================================= */}
-      <section className="border-t border-white/10 py-32">
+      <section className="border-t border-fg/10 py-32">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-              Technology
-            </p>
+            <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("Technology")}</p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-              Tools I use to build.
-            </h2>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{t("Tools I use to build.")}</h2>
           </Reveal>
 
           <motion.div
@@ -627,8 +619,8 @@ export default function Page() {
       relative
       overflow-hidden
       rounded-2xl
-      border border-white/10
-      bg-white/[0.02]
+      border border-fg/10
+      bg-fg/[0.02]
       p-6
 
       transition-all
@@ -636,7 +628,7 @@ export default function Page() {
       ease-out
 
       hover:border-[var(--tech-color)]/30
-      hover:bg-white/[0.04]
+      hover:bg-fg/[0.04]
 
       before:pointer-events-none
       before:absolute
@@ -657,13 +649,13 @@ export default function Page() {
                 <div className="relative z-10">
                   {/* Top */}
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-white/20">
+                    <span className="text-sm text-fg/20">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
                     <span
                       className="
-            text-white/20
+            text-fg/20
             transition-all
             duration-500
             group-hover:text-[var(--tech-color)]
@@ -685,22 +677,22 @@ export default function Page() {
           justify-center
           rounded-xl
           border
-          border-white/10
-          bg-white/[0.04]
+          border-fg/10
+          bg-fg/[0.04]
 
           transition-all
           duration-500
 
           group-hover:scale-105
           group-hover:border-[var(--tech-color)]/30
-          group-hover:bg-white/[0.08]
+          group-hover:bg-fg/[0.08]
         "
                   >
                     <Icon
                       className="
             h-7
             w-7
-            text-white/50
+            text-fg/50
 
             transition-all
             duration-500
@@ -717,7 +709,7 @@ export default function Page() {
           mt-5
           text-lg
           font-medium
-          text-white/90
+          text-fg/90
           transition-colors
           duration-300
         "
@@ -750,14 +742,14 @@ export default function Page() {
       {/* =========================================================
     STATS
 ========================================================= */}
-      <section className="border-t border-white/10 py-24">
+      <section className="border-t border-fg/10 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4"
+            className="grid gap-px overflow-hidden rounded-2xl border border-fg/10 bg-fg/10 sm:grid-cols-2 lg:grid-cols-4"
           >
             {[
               {
@@ -778,15 +770,15 @@ export default function Page() {
               },
             ].map((stat) => (
               <motion.div
-                key={stat.label}
+                key={t(stat.label)}
                 variants={fadeUp}
-                className="bg-[#0b0b0b] p-8 sm:p-10"
+                className="bg-ink p-8 sm:p-10"
               >
                 <div className="text-4xl font-bold sm:text-5xl">
                   {stat.value}
                 </div>
 
-                <p className="mt-3 text-sm text-white/40">{stat.label}</p>
+                <p className="mt-3 text-sm text-fg/40">{t(stat.label)}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -796,16 +788,12 @@ export default function Page() {
       {/* =========================================================
     PROCESS
 ========================================================= */}
-      <section className="border-t border-white/10 py-32">
+      <section className="border-t border-fg/10 py-32">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-              How I work
-            </p>
+            <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("How I work")}</p>
 
-            <h2 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-              From idea to something people can use.
-            </h2>
+            <h2 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">{t("From idea to something people can use.")}</h2>
           </Reveal>
 
           <div className="mt-16">
@@ -837,14 +825,14 @@ export default function Page() {
             ].map((step, index) => (
               <Reveal
                 key={step.number}
-                className="group grid gap-6 border-t border-white/10 py-8 md:grid-cols-[100px_280px_1fr] md:items-center"
+                className="group grid gap-6 border-t border-fg/10 py-8 md:grid-cols-[100px_280px_1fr] md:items-center"
               >
-                <span className="text-sm text-violet-400">{step.number}</span>
+                <span className="text-sm text-brand">{step.number}</span>
 
-                <h3 className="text-2xl font-semibold">{step.title}</h3>
+                <h3 className="text-2xl font-semibold">{t(step.title)}</h3>
 
-                <p className="max-w-xl leading-7 text-white/40">
-                  {step.description}
+                <p className="max-w-xl leading-7 text-fg/40">
+                  {t(step.description)}
                 </p>
               </Reveal>
             ))}
@@ -855,25 +843,19 @@ export default function Page() {
       {/* =========================================================
           FEATURED PROJECTS
       ========================================================= */}
-      <section className="border-t border-white/10 py-32">
+      <section className="border-t border-fg/10 py-32">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="mb-16 flex items-end justify-between gap-6">
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-violet-400">
-                Selected work
-              </p>
+              <p className="text-sm uppercase tracking-[0.3em] text-brand">{t("Selected work")}</p>
 
-              <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-                Featured projects
-              </h2>
+              <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{t("Featured projects")}</h2>
             </div>
 
             <Link
               href="/projects"
-              className="hidden text-white/50 transition hover:text-white sm:block"
-            >
-              View all →
-            </Link>
+              className="hidden text-fg/50 transition hover:text-fg sm:block"
+            >{t("View all →")}</Link>
           </Reveal>
 
           <ProjectsSection
@@ -885,17 +867,13 @@ export default function Page() {
       {/* =========================================================
           CTA
       ========================================================= */}
-      <section className="border-t border-white/10 py-32">
+      <section className="border-t border-fg/10 py-32">
         <Reveal className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-5xl font-bold tracking-tight sm:text-7xl">
-            Let&apos;s build something
-            <span className="block text-white/30">great together.</span>
+          <h2 className="text-5xl font-bold tracking-tight sm:text-7xl">{t("Let's build something")}<span className="block text-fg/30">{t("great together.")}</span>
           </h2>
 
           <div className="mt-10">
-            <MagneticButton href="/contact" primary>
-              Get in touch →
-            </MagneticButton>
+            <MagneticButton href="/contact" primary>{t("Get in touch →")}</MagneticButton>
           </div>
         </Reveal>
       </section>
