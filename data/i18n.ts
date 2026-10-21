@@ -1,6 +1,10 @@
 // English source text -> Khmer. Anything missing falls back to English.
 export const km: Record<string, string> = {
   Home: "ទំព័រដើម",
+  Navigate: "ការរុករក",
+  Connect: "ភ្ជាប់ទំនាក់ទំនង",
+  "Back to top": "ត្រឡប់ទៅលើ",
+  "Footer navigation": "ម៉ឺនុយបាត​ទំព័រ",
   About: "អំពី",
   Projects: "គម្រោង",
   Skills: "ជំនាញ",

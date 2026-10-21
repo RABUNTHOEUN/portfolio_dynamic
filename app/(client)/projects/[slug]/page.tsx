@@ -20,6 +20,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 import { cn } from "@/lib/utils";
+import { absoluteUrl, jsonLdString, ogImageUrl } from "@/lib/seo";
+import { site } from "@/data/site";
 import { getProjectBySlug, projects } from "@/data/projects";
 
 type Props = {
@@ -46,6 +48,12 @@ export async function generateMetadata({
   }
 
   const path = `/projects/${project.slug}`;
+  const image = {
+    url: ogImageUrl(project.title, project.shortDescription, project.category),
+    width: 1200,
+    height: 630,
+    alt: project.title,
+  };
 
   return {
     title: project.title,
@@ -58,21 +66,20 @@ export async function generateMetadata({
 
     openGraph: {
       type: "article",
-      title: project.title,
+      siteName: `${site.full_name} — Portfolio`,
+      title: `${project.title} | ${site.full_name}`,
       description: project.shortDescription,
       url: path,
-      images: [
-        {
-          url: project.image,
-          alt: project.title,
-        },
-      ],
+      images: [image],
+      authors: [site.full_name],
+      tags: project.technologies,
     },
 
     twitter: {
       card: "summary_large_image",
-      title: project.title,
+      title: `${project.title} | ${site.full_name}`,
       description: project.shortDescription,
+      images: [image.url],
     },
   };
 }
@@ -93,8 +100,37 @@ export default async function ProjectPage({ params }: Props) {
   const next =
     projects[(index + 1) % projects.length];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        name: project.title,
+        description: project.description,
+        url: absoluteUrl(`/projects/${project.slug}`),
+        image: absoluteUrl(ogImageUrl(project.title, project.shortDescription, project.category)),
+        dateCreated: project.year,
+        keywords: project.technologies.join(", "),
+        genre: project.category,
+        author: { "@type": "Person", name: site.full_name, url: absoluteUrl("/") },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Projects", item: absoluteUrl("/projects") },
+          { "@type": "ListItem", position: 3, name: project.title, item: absoluteUrl(`/projects/${project.slug}`) },
+        ],
+      },
+    ],
+  };
+
   return (
     <main className="pb-32 pt-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }}
+      />
       <div className="mx-auto max-w-6xl px-6">
 
         {/* =========================================================

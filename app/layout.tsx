@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono, Moulpali, JetBrains_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
+import { rootMetadata, rootViewport, siteJsonLd, jsonLdString } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,10 +27,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Ra Bunthoeun",
-  description: "Portfolio website of Ra Bunthoeun",
-};
+export const metadata = rootMetadata;
+export const viewport = rootViewport;
 
 export default function RootLayout({
   children,
@@ -42,6 +40,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${moulpali.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdString(siteJsonLd()) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -38,7 +38,7 @@ export default function Navbar() {
           {site.first_name.toUpperCase()}
           <span className="text-brand">.</span>
         </Link> */}
-        <img src="logo200x200.png" alt="logo" className="w-[42px]" />
+        <img src="/logo200x200.png" alt={`${site.full_name} logo`} width={42} height={42} className="w-[42px]" />
 
         <nav className="hidden items-center gap-1 md:flex">
           {site.nav.map((item) => (
